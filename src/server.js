@@ -15,4 +15,8 @@ app.use(express.json());
 
 app.use(bookRouter);
 
+app.use("/health", (req, res) => {
+    res.status(200).json({message: "API is alive"})
+});
+
 app.listen(port, () => console.log(`Server is listening on port ${port}`));
