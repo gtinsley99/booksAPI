@@ -1,8 +1,5 @@
 const Book = require("../models/bookModel");
 
-// updateGenre, deleteaBook
-// find particular book (req.body etc req.params)
-
 const addaBook = async (req, res) => {
   console.log("The req body is:", req.body);
   try {

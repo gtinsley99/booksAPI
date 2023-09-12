@@ -23,8 +23,6 @@ bookRouter.delete("/books/deleteAllBooks", deleteAllBooks);
 bookRouter.put("/books/updateaBookById/:id", updateaBookById);
 bookRouter.delete("/books/deleteaBookById/:id", deleteaBookById);
 
-// bookRouter.put("books/updateGenre/:id", updateGenre);
-
 // Search by title
 bookRouter.put("/books/updateanAuthorByTitle", updateanAuthorByTitle);
 bookRouter.put("/books/updateaBookByTitle", updateaBookByTitle);
