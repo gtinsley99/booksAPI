@@ -67,12 +67,11 @@ button:hover{
 }
 
 .formCard{
-  position: absolute;
-  bottom: 0;
   width: 100vw;
   margin-bottom: 7vh;
   display: flex;
   justify-content: space-around;
+  margin-top: 4%;
 }
 
 .welcomeBox{
@@ -81,13 +80,44 @@ button:hover{
   background-color: white;
   border: 3px solid black;
   margin-top: 18vh;
+  margin-bottom: 37.4%;
 }
 
 .bookForm{
   width: 20vw;
   display: flex;
+  align-items: center;
   justify-content: space-around;
   border: 1px solid black;
   padding: 10px;
   background-color: white;
+}
+
+input{
+  width: 175px;
+  height: 30px;
+}
+
+.submitBtn{
+  margin: 0px 5px;
+  height: 30px;
+}
+
+@media only screen and (max-width: 1300px) {
+  .formCard{
+    flex-direction: column;
+    align-items: center;
+    justify-content: unset;
+    background-color: grey;
+    border: 3px solid black;
+    width: 600px;
+    padding: 20px 0px;
+    }
+
+  .bookForm{
+    padding: 10px;
+    min-width: 350px;
+    margin: 10px;
+    border: 2px solid black;
+  }
 }

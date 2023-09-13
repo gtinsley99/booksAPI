@@ -3,17 +3,17 @@ const ChangeBookData = () => {
     <div className="formCard">
       <form className="bookForm">
         <input></input>
-        <button type="submit">Delete book</button>
+        <button className="submitBtn" type="submit">Delete book</button>
       </form>
 
       <form className="bookForm">
         <input></input>
-        <button type="submit">Add book</button>
+        <button className="submitBtn" type="submit">Add book</button>
       </form>
 
       <form className="bookForm">
         <input></input>
-        <button type="submit">Update book</button>
+        <button className="submitBtn" type="submit">Update book</button>
       </form>
     </div>
   );
