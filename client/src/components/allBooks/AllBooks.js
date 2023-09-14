@@ -24,7 +24,7 @@ const AllBooks = (props) => {
                   <div key={index} className="bookBox">
                     <p>Title: {props.bookList.books[index].title}</p>
                     <p>Author: {props.bookList.books[index].author}</p>
-                    <p>Genre: {props.bookList.books[index].genre}</p>
+                    {props.bookList.books[index].genre !== undefined && <p>Genre: {props.bookList.books[index].genre}</p>}
                   </div>
                 );
               })
