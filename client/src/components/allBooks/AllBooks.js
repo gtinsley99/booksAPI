@@ -1,5 +1,4 @@
 const AllBooks = (props) => {
-
   const showAllBooks = () => {
     props.setShowAll(!props.showAll);
     if (props.showButton === "Show") {
@@ -24,7 +23,10 @@ const AllBooks = (props) => {
                   <div key={index} className="bookBox">
                     <p>Title: {props.bookList.books[index].title}</p>
                     <p>Author: {props.bookList.books[index].author}</p>
-                    {props.bookList.books[index].genre !== undefined && <p>Genre: {props.bookList.books[index].genre}</p>}
+                    {props.bookList.books[index].genre !==
+                      (undefined || "") && (
+                      <p>Genre: {props.bookList.books[index].genre}</p>
+                    )}
                   </div>
                 );
               })
