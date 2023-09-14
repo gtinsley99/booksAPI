@@ -69,7 +69,6 @@ button:hover{
 
 .formCard{
   width: 100vw;
-  margin-bottom: 7vh;
   display: flex;
   justify-content: space-around;
 }
@@ -113,6 +112,7 @@ input{
     border: 3px solid black;
     width: 600px;
     padding: 20px 0px;
+    margin-bottom: 7vh;
     }
 
   .bookForm{

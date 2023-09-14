@@ -1,28 +1,18 @@
-import { useEffect, useState } from "react";
-
-export const Booksapi = (setBooks) => {
-  const [errors, setErrors] = useState(null);
-  useEffect(() => {
-    const fetchBooks = async () => {
+export const Booksapi = async (setBookList) => {
       try {
         const res = await fetch("http://localhost:5001/books/listAllBooks");
         if (!res.ok) {
           throw new Error(res.statusText);
         }
         const data = await res.json();
-        setBooks(data);
+        setBookList(data);
       } catch (error) {
-        setErrors("Failed to fetch data");
         console.log(error);
-        console.log(errors);
       }
-    };
-    fetchBooks();
-  }, []);
-  return;
+    
 };
 
-export const AddBookapi = async (addTitle, addAuthor, addGenre, setResponse) => {
+export const AddBookapi = async (addTitle, addAuthor, addGenre) => {
     try {
       const res = await fetch("http://localhost:5001/books/addaBook", {
         method: "POST",
@@ -62,7 +52,7 @@ export const DeleteBookapi = async (delTitle) => {
     }
 };
 
-export const UpdateBookapi = async (updTitle, updAuthor, updGenre, setResponse) => {
+export const UpdateBookapi = async (updTitle, updAuthor, updGenre) => {
     try {
       const res = await fetch(
         "http://localhost:5001/books/updateaBookByTitle",

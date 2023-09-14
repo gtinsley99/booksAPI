@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { AddBookapi, DeleteBookapi, UpdateBookapi } from "../../utils";
+import { Booksapi, AddBookapi, DeleteBookapi, UpdateBookapi } from "../../utils";
 
-const ChangeBookData = () => {
+const ChangeBookData = (props) => {
   // Add
   const [addTitle, setAddTitle] = useState();
   const [addAuthor, setAddAuthor] = useState();
@@ -16,16 +16,19 @@ const ChangeBookData = () => {
   const addSubmitHandler = async (e) => {
     e.preventDefault();
     AddBookapi(addTitle, addAuthor, addGenre);
+    Booksapi(props.setBookList);
   };
 
   const deleteSubmitHandler = async (e) => {
     e.preventDefault();
     DeleteBookapi(delTitle);
+    Booksapi(props.setBookList);
   };
 
   const updateSubmitHandler = async (e) => {
     e.preventDefault();
     UpdateBookapi(updTitle, updAuthor, updGenre);
+    Booksapi(props.setBookList);
   };
 
   return (
