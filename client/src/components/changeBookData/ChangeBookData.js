@@ -127,10 +127,15 @@ const ChangeBookData = (props) => {
   // Submit functions
   const addSubmitHandler = async (e) => {
     e.preventDefault();
-    props.setModTitle(addTitle);
-    props.setMethod("added");
-    AddBookapi(addTitle, addAuthor, addGenre);
+    AddBookapi(addTitle, addAuthor, addGenre, props.setErrors);
     Booksapi(props.setBookList);
+    if (props.error === null) {
+      props.setModTitle(addTitle);
+      props.setMethod("added");
+    } else {
+      props.setModTitle("");
+      props.setMethod("Error - Book not added");
+    };
     setAddTitle("");
     setAddAuthor("");
     setAddGenre("");
@@ -140,10 +145,16 @@ const ChangeBookData = (props) => {
 
   const deleteSubmitHandler = async (e) => {
     e.preventDefault();
-    props.setModTitle(delTitle);
-    props.setMethod("deleted");
-    DeleteBookapi(delTitle);
+    
+    DeleteBookapi(delTitle, props.setErrors);
     Booksapi(props.setBookList);
+    if(props.error === null){
+      props.setModTitle(`Title: ${delTitle}`);
+      props.setMethod("Book deleted");
+    } else {
+      props.setModTitle("");
+      props.setMethod("Error - Book not deleted");
+    };
     setDelTitle("");
     setDelButton(true);
     props.setShowModal(true);
@@ -151,10 +162,15 @@ const ChangeBookData = (props) => {
 
   const updateSubmitHandler = async (e) => {
     e.preventDefault();
-    props.setModTitle(updTitle);
-    props.setMethod("updated");
-    UpdateBookapi(updTitle, updAuthor, updGenre);
+    UpdateBookapi(updTitle, updAuthor, updGenre, props.setErrors);
     Booksapi(props.setBookList);
+    if (props.errors === null){
+    props.setModTitle(`Title: ${updTitle}`);
+    props.setMethod("Book updated");
+    } else {
+      props.setModTitle("");
+      props.setMethod("Error - Book not updated");
+    }
     setUpdTitle("");
     setUpdAuthor("");
     setUpdGenre("");

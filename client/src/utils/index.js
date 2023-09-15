@@ -12,7 +12,7 @@ export const Booksapi = async (setBookList) => {
     
 };
 
-export const AddBookapi = async (addTitle, addAuthor, addGenre) => {
+export const AddBookapi = async (addTitle, addAuthor, addGenre, setErrors) => {
     try {
       const res = await fetch("http://localhost:5001/books/addaBook", {
         method: "POST",
@@ -23,15 +23,17 @@ export const AddBookapi = async (addTitle, addAuthor, addGenre) => {
           genre: addGenre,
         })
       });
+      setErrors(null);
       if (!res.ok) {
         throw new Error(res.statusText);
       };
     } catch (error) {
       console.log(error);
+      setErrors(error);
     }
 };
 
-export const DeleteBookapi = async (delTitle) => {
+export const DeleteBookapi = async (delTitle, setErrors) => {
     try {
       const res = await fetch(
         "http://localhost:5001/books/deleteaBookByTitle",
@@ -43,16 +45,17 @@ export const DeleteBookapi = async (delTitle) => {
           })
         }
       );
+      setErrors(null);
       if (!res.ok) {
         throw new Error(res.statusText);
-       
       };
     } catch (error) {
       console.log(error);
+      setErrors(error);
     }
 };
 
-export const UpdateBookapi = async (updTitle, updAuthor, updGenre) => {
+export const UpdateBookapi = async (updTitle, updAuthor, updGenre, setErrors) => {
     try {
       const res = await fetch(
         "http://localhost:5001/books/updateaBookByTitle",
@@ -71,5 +74,6 @@ export const UpdateBookapi = async (updTitle, updAuthor, updGenre) => {
       };
     } catch (error) {
       console.log(error);
+      setErrors(error);
     }
 };

@@ -11,6 +11,8 @@ import ChangeBookData from "./components/changeBookData/ChangeBookData";
 import Modal from "./components/modal/Modal";
 
 function App() {
+  // Errors on fetch
+  const [errors, setErrors] = useState(null);
   // All book list
   const [showAll, setShowAll] = useState(false);
   const [showButton, setShowButton] = useState("Show");
@@ -35,13 +37,15 @@ function App() {
         bookList={bookList}
       />
       {showModal && (
-        <Modal setShowModal={setShowModal} method={crud} title={title} />
+        <Modal setShowModal={setShowModal} method={crud} title={title} errors={errors} setErrors={setErrors}/>
       )}
       <ChangeBookData
         setBookList={setBookList}
         setMethod={setCrud}
         setModTitle={setTitle}
         setShowModal={setShowModal}
+        setErrors={setErrors}
+        errors={errors}
       />
     </div>
   );
