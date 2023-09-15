@@ -103,6 +103,22 @@ input{
   height: 30px;
 }
 
+.modal{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(128, 128, 128, 0.458);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalCard{
+  padding: 20px 150px;
+  background-color: white;
+  border: 3px solid black;
+}
+
 @media only screen and (max-width: 1300px) {
   .formCard{
     flex-direction: column;

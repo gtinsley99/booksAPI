@@ -95,6 +95,9 @@ const ChangeBookData = (props) => {
     if (e.target.value !== "" && updTitleInput === true) {
       setUpdAuthorInput(true);
       setUpdButton(false);
+    } else if (e.target.value === "" && updTitleInput === true && updGenreInput === true) {
+      setUpdAuthorInput(false);
+      setUpdButton(false);
     } else if (e.target.value !== "") {
       setUpdAuthorInput(true);
       setUpdButton(true);
@@ -109,6 +112,9 @@ const ChangeBookData = (props) => {
     if (e.target.value !== "" && updTitleInput === true) {
       setUpdGenreInput(true);
       setUpdButton(false);
+    } else if (e.target.value === "" && updTitleInput === true && updAuthorInput === true) {
+      setUpdGenreInput(false);
+      setUpdButton(false);
     } else if (e.target.value !== "") {
       setUpdGenreInput(true);
       setUpdButton(true);
@@ -121,30 +127,39 @@ const ChangeBookData = (props) => {
   // Submit functions
   const addSubmitHandler = async (e) => {
     e.preventDefault();
+    props.setModTitle(addTitle);
+    props.setMethod("added");
     AddBookapi(addTitle, addAuthor, addGenre);
     Booksapi(props.setBookList);
     setAddTitle("");
     setAddAuthor("");
     setAddGenre("");
     setAddButton(true);
+    props.setShowModal(true);
   };
 
   const deleteSubmitHandler = async (e) => {
     e.preventDefault();
+    props.setModTitle(delTitle);
+    props.setMethod("deleted");
     DeleteBookapi(delTitle);
     Booksapi(props.setBookList);
     setDelTitle("");
     setDelButton(true);
+    props.setShowModal(true);
   };
 
   const updateSubmitHandler = async (e) => {
     e.preventDefault();
+    props.setModTitle(updTitle);
+    props.setMethod("updated");
     UpdateBookapi(updTitle, updAuthor, updGenre);
     Booksapi(props.setBookList);
     setUpdTitle("");
     setUpdAuthor("");
     setUpdGenre("");
     setUpdButton(true);
+    props.setShowModal(true);
   };
 
   return (
