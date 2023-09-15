@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { Booksapi, AddBookapi, DeleteBookapi, UpdateBookapi } from "../../utils";
+import {
+  Booksapi,
+  AddBookapi,
+  DeleteBookapi,
+  UpdateBookapi,
+} from "../../utils";
 
 const ChangeBookData = (props) => {
   // Add
@@ -26,102 +31,120 @@ const ChangeBookData = (props) => {
   const [updAuthorInput, setUpdAuthorInput] = useState(false);
   const [updGenreInput, setUpdGenreInput] = useState(false);
 
+  // Functions to store input values and activate submit button when required inputs filled in
+
+  // Delete book function
   const delActivate = (e) => {
     setDelTitle(e.target.value);
-    if (e.target.value !== ""){
+    if (e.target.value !== "") {
       setDelButton(false);
     } else {
       setDelButton(true);
-    };
-  }
+    }
+  };
 
+  // Add a book functions
   const addTitleActivate = (e) => {
     setAddTitle(e.target.value);
-    if (e.target.value !== "" && addAuthorInput === true){
+    if (e.target.value !== "" && addAuthorInput === true) {
       setAddTitleInput(true);
       setAddButton(false);
-    }else if (e.target.value !== ""){
+    } else if (e.target.value !== "") {
       setAddTitleInput(true);
       setAddButton(true);
     } else {
       setAddTitleInput(false);
       setAddButton(true);
-    };
-  }
+    }
+  };
 
   const addAuthorActivate = (e) => {
     setAddAuthor(e.target.value);
-    if (e.target.value !== "" && addTitleInput === true){
+    if (e.target.value !== "" && addTitleInput === true) {
       setAddAuthorInput(true);
       setAddButton(false);
-    } else if(e.target.value !== ""){
+    } else if (e.target.value !== "") {
       setAddAuthorInput(true);
       setAddButton(true);
-    }else{
+    } else {
       setAddAuthorInput(false);
       setAddButton(true);
     }
-  }
+  };
 
+  // Update a book functions
   const updTitleActivate = (e) => {
     setUpdTitle(e.target.value);
-    if (e.target.value !== "" && (updAuthorInput === true || updGenreInput === true)){
+    if (
+      e.target.value !== "" &&
+      (updAuthorInput === true || updGenreInput === true)
+    ) {
       setUpdTitleInput(true);
       setUpdButton(false);
-    } else if (e.target.value !== ""){
+    } else if (e.target.value !== "") {
       setUpdTitleInput(true);
       setUpdButton(true);
     } else {
-      setUpdTitleInput(false)
+      setUpdTitleInput(false);
       setUpdButton(true);
-    };
-  }
+    }
+  };
 
   const updAuthorActivate = (e) => {
     setUpdAuthor(e.target.value);
-    if (e.target.value !== "" && updTitleInput === true){
+    if (e.target.value !== "" && updTitleInput === true) {
       setUpdAuthorInput(true);
       setUpdButton(false);
-    } else if (e.target.value !== ""){
+    } else if (e.target.value !== "") {
       setUpdAuthorInput(true);
       setUpdButton(true);
     } else {
-      setUpdAuthorInput(false)
+      setUpdAuthorInput(false);
       setUpdButton(true);
-    };
-  }
+    }
+  };
 
   const updGenreActivate = (e) => {
     setUpdGenre(e.target.value);
-    if (e.target.value !== "" && updTitleInput === true){
+    if (e.target.value !== "" && updTitleInput === true) {
       setUpdGenreInput(true);
       setUpdButton(false);
-    } else if (e.target.value !== ""){
+    } else if (e.target.value !== "") {
       setUpdGenreInput(true);
       setUpdButton(true);
     } else {
-      setUpdGenreInput(false)
+      setUpdGenreInput(false);
       setUpdButton(true);
-    };
-  }
+    }
+  };
 
-
+  // Submit functions
   const addSubmitHandler = async (e) => {
     e.preventDefault();
     AddBookapi(addTitle, addAuthor, addGenre);
     Booksapi(props.setBookList);
+    setAddTitle("");
+    setAddAuthor("");
+    setAddGenre("");
+    setAddButton(true);
   };
 
   const deleteSubmitHandler = async (e) => {
     e.preventDefault();
     DeleteBookapi(delTitle);
     Booksapi(props.setBookList);
+    setDelTitle("");
+    setDelButton(true);
   };
 
   const updateSubmitHandler = async (e) => {
     e.preventDefault();
     UpdateBookapi(updTitle, updAuthor, updGenre);
     Booksapi(props.setBookList);
+    setUpdTitle("");
+    setUpdAuthor("");
+    setUpdGenre("");
+    setUpdButton(true);
   };
 
   return (
@@ -129,6 +152,7 @@ const ChangeBookData = (props) => {
       <form className="bookForm" onSubmit={deleteSubmitHandler}>
         <input
           placeholder="Insert title to delete..."
+          value={delTitle}
           onChange={delActivate}
         ></input>
         <button className="submitBtn" type="submit" disabled={delButton}>
@@ -140,9 +164,18 @@ const ChangeBookData = (props) => {
         <input
           placeholder="Insert title here..."
           onChange={addTitleActivate}
+          value={addTitle}
         ></input>
-        <input placeholder="Insert author here..." onChange={addAuthorActivate}></input>
-        <input placeholder="Insert genre here..." onChange={(e) => setAddGenre(e.target.value)}></input>
+        <input
+          placeholder="Insert author here..."
+          onChange={addAuthorActivate}
+          value={addAuthor}
+        ></input>
+        <input
+          placeholder="Insert genre here..."
+          onChange={(e) => setAddGenre(e.target.value)}
+          value={addGenre}
+        ></input>
         <button className="submitBtn" type="submit" disabled={addButton}>
           Add book
         </button>
@@ -152,9 +185,18 @@ const ChangeBookData = (props) => {
         <input
           placeholder="Title of book to update..."
           onChange={updTitleActivate}
+          value={updTitle}
         ></input>
-        <input placeholder="Insert author here..."  onChange={updAuthorActivate}></input>
-        <input placeholder="Insert genre here..."  onChange={updGenreActivate}></input>
+        <input
+          placeholder="Insert author here..."
+          onChange={updAuthorActivate}
+          value={updAuthor}
+        ></input>
+        <input
+          placeholder="Insert genre here..."
+          onChange={updGenreActivate}
+          value={updGenre}
+        ></input>
         <button className="submitBtn" type="submit" disabled={updButton}>
           Update book
         </button>
